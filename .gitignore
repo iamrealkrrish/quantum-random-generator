@@ -1,1 +1,18 @@
 
+# Python bytecode and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local environment and configuration
+.env
+token.txt
+venv/
+.venv/
+.idea/
+.vscode/
+
+# Qiskit/IBM artifacts
+qiskit_cache/
+.qiskit/
