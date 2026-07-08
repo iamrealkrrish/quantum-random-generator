@@ -1,5 +1,5 @@
 from qiskit_aer import Aer
-from qiskit_ibm_provider import QiskitIBMProvider
+from qiskit_ibm_runtime import QiskitRuntimeService
 
 def get_backend():
     print("\nChoose backend mode:")
@@ -11,11 +11,12 @@ def get_backend():
         token = input("Enter your IBM Quantum API token: ").strip()
         if token:
             try:
-                # Modern way to save and load account
-                QiskitIBMProvider.save_account(token=token, overwrite=True)
-                provider = QiskitIBMProvider()
+                # Save the account for the runtime service
+                QiskitRuntimeService.save_account(channel="ibm_quantum", token=token, overwrite=True)
+                service = QiskitRuntimeService()
                 
-                backends = provider.backends()
+                # List backends
+                backends = service.backends(simulator=False, operational=True)
                 print("\nAvailable IBM Quantum backends:")
                 for i, b in enumerate(backends):
                     print(f"{i+1}. {b.name}")
